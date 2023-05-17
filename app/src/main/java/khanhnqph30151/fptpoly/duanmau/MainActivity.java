@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         // init DB
-        DBHelper db = new DBHelper(getApplicationContext(), null, null, 0);
+        DBHelper db = new DBHelper(getApplicationContext());
 
 //        replaceFragment(HomeFragment.newInstance());
     }
