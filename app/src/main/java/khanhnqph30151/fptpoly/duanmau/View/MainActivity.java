@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau;
+package khanhnqph30151.fptpoly.duanmau.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
+import khanhnqph30151.fptpoly.duanmau.R;
 import khanhnqph30151.fptpoly.duanmau.data.DBHelper;
 import khanhnqph30151.fptpoly.duanmau.fragment.Doanh_Thu.DoanhThuFragment;
 import khanhnqph30151.fptpoly.duanmau.fragment.Doi_Mat_Khau.DoiMatKhauFragment;
@@ -41,10 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.id_nav);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // init DB
-        DBHelper db = new DBHelper(getApplicationContext());
-
-//        replaceFragment(HomeFragment.newInstance());
     }
 
     @Override
@@ -94,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             return false;
         }
-
     }
+
 
     public void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

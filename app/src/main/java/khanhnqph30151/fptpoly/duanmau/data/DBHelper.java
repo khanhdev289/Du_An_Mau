@@ -13,23 +13,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-
-        Log.d("DBHelper", "vao ham khoi tao DBHelper");
-
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(TABLE_THU_THU_CREATE);
-        //Thanh Vien
-        db.execSQL(TABLE_THANH_VIEN_CREATE);
-        //Loai Sach
-        db.execSQL(TABLE_LOAI_SACH_CREATE);
-        //Sach
-        db.execSQL(TABLE_SACH_CREATE);
-        //Phieu Muon
-        db.execSQL(TABLE_PHIEU_MUON_CREATE);
     }
     public static final String TABLE_THU_THU_CREATE = "CREATE TABLE IF NOT EXISTS " +
             "tbl_thuThu (" +
-            "thuThu_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "thuThu_id TEXT PRIMARY KEY , " +
             "thuThu_hoTen TEXT NOT NULL," +
             "thuThu_matKhau TEXT NOT NULL" +
             ")";
@@ -48,19 +35,20 @@ public class DBHelper extends SQLiteOpenHelper {
             "tbl_Sach (" +
             "Sach_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "Sach_tenSach TEXT NOT NULL," +
-            "Sach_giaThue TEXT NOT NULL," +
+            "Sach_giaTien TEXT NOT NULL," +
             "loaiSach_id INTEGER REFERENCES tbl_loaiSach(loaiSach_id)" +
             ")";
     public static final String TABLE_PHIEU_MUON_CREATE = "CREATE TABLE IF NOT EXISTS " +
             "tbl_phieuMuon (" +
             "phieuMuon_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "thanhVien_hoTen INTEGER REFERENCES tbl_thanhVien(thanhVien_hoTen)," +
             "thuThu_id TEXT REFERENCES tbl_thuThu(thuThu_id)," +
-            "thanhVien_id TEXT REFERENCES tbl_thanhVien(thanhVien_id)," +
-            "Sach_id INTEGER REFERENCES tbl_Sach(Sach_id)," +
-            "phieuMuon_tienThue TEXT NOT NULL," +
-            "phieuMuon_ngay DATE NOT NULL," +
-            "phieuMuon_traSach INTEGER NOT NULL" +
+            "Sach_tenSach INTEGER REFERENCES tbl_Sach(Sach_tenSach)," +
+            "phieuMuon_ngay TEXT NOT NULL," +
+            "phieuMuon_tienThue TEXT ," +
+            "phieuMuon_trangThai TEXT " +
             ")";
+
 
 
     @Override
@@ -78,15 +66,25 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(TABLE_SACH_CREATE);
         //Phieu Muon
         db.execSQL(TABLE_PHIEU_MUON_CREATE);
+
+        db.execSQL("INSERT INTO tbl_loaiSach VALUES (1, 'Thiếu nhi'),(2,'Tình cảm'),(3, 'Giáo khoa')");
+        db.execSQL("INSERT INTO tbl_Sach VALUES (1, 'Hãy đợi đấy', 2500, 1), (2, 'Thằng cuội', 1000, 1), (3, 'Lập trình Android', 2000, 3)");
+        db.execSQL("INSERT INTO tbl_thuThu VALUES ('admin','Nguyễn Văn Anh','123123'),('mod','Trần Văn Hùng','123123')");
+        db.execSQL("INSERT INTO tbl_thanhVien VALUES (1,'Cao Thu Trang','2000'),(2,'Trần Mỹ Kim','2000')");
+        //trả sách: 1: đã trả - 0: chưa trả
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS tbl_thuThu");
-        db.execSQL("DROP TABLE IF EXISTS tbl_thanhVien");
-        db.execSQL("DROP TABLE IF EXISTS tbl_loaiSach");
-        db.execSQL("DROP TABLE IF EXISTS tbl_Sach");
-        db.execSQL("DROP TABLE IF EXISTS tbl_phieuMuon");
-        onCreate(db);
+        if(oldVersion != newVersion){
+            db.execSQL("DROP TABLE IF EXISTS tbl_thuThu");
+            db.execSQL("DROP TABLE IF EXISTS tbl_thanhVien");
+            db.execSQL("DROP TABLE IF EXISTS tbl_loaiSach");
+            db.execSQL("DROP TABLE IF EXISTS tbl_Sach");
+            db.execSQL("DROP TABLE IF EXISTS tbl_phieuMuon");
+            onCreate(db);
+        }
+
     }
 }

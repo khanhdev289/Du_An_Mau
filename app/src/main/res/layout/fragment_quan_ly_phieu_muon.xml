@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.QuanLyPhieuMuon.QuanLyPhieuMuonFragment">
+    tools:context=".fragment.QuanLyPhieuMuon.QuanLyPhieuMuonFragment"
+    android:orientation="vertical"
+    >
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recy_qlphieumuon"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="QUẢN LÝ PHIẾU MƯỢN"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:padding="40dp"
+         />
 
-</FrameLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/float_qlphieumuon_add"
+        android:backgroundTint="@color/buttonColor"
+        android:src="@drawable/ic_add"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        />
+
+
+</RelativeLayout>
