@@ -67,7 +67,7 @@ public class SachDAO {
         values.put("Sach_giaThue", s.getGiaThue());
         values.put("loaiSach_tenLoai", s.getTenLoai());
 
-        return sqLite.update("tbl_Sach", values, "Sach_id", new String[]{String.valueOf(s.getIdSach())});
+        return sqLite.update("tbl_Sach", values, "Sach_id = ?", new String[]{String.valueOf(s.getIdSach())});
     }
     public int delete(int ID) {
         return sqLite.delete("tbl_Sach", "Sach_id = ?", new String[]{String.valueOf(ID)});
