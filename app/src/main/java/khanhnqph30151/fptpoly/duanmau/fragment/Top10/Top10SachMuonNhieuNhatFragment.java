@@ -10,15 +10,10 @@ import android.view.ViewGroup;
 
 import khanhnqph30151.fptpoly.duanmau.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Top10SachMuonNhieuNhatFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Top10SachMuonNhieuNhatFragment extends Fragment {
 
     public Top10SachMuonNhieuNhatFragment() {
-        // Required empty public constructor
     }
 
     public static Top10SachMuonNhieuNhatFragment newInstance() {

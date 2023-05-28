@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import khanhnqph30151.fptpoly.duanmau.data.DBHelper;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.Sach;
 
 public class PhieuMuonDAO {
 
@@ -48,5 +49,19 @@ public class PhieuMuonDAO {
     public ArrayList<PhieuMuon> getAllData() {
         String sql = "SELECT * FROM tbl_phieuMuon";
         return getDataPhieuMuon(sql);
+    }
+    public long update(PhieuMuon pm){
+        ContentValues values = new ContentValues();
+
+        values.put("thanhVien_hoTen", pm.getTenThanhVien());
+        values.put("Sach_tenSach", pm.getTenSach());
+        values.put("Sach_giaThue", pm.getGiaThue());
+        values.put("phieuMuon_ngay", pm.getNgayMuon());
+        values.put("phieuMuon_trangThai", pm.getTrangThai());
+
+        return sqLite.update("tbl_phieuMuon", values, "phieuMuon_id = ?", new String[]{String.valueOf(pm.getMaPhieuMuon())});
+    }
+    public int delete(int ID) {
+        return sqLite.delete("tbl_phieuMuon", "phieuMuon_id = ?", new String[]{String.valueOf(ID)});
     }
 }

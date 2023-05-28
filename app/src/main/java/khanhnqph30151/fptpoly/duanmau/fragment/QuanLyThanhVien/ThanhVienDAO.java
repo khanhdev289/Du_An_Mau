@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import khanhnqph30151.fptpoly.duanmau.data.DBHelper;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSach;
 import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.Sach;
 
 public class ThanhVienDAO {
@@ -58,5 +59,16 @@ public class ThanhVienDAO {
         }
         return lst;
 
+    }
+    public long update(ThanhVien tv){
+        ContentValues values = new ContentValues();
+        values.put("thanhVien_id", tv.getMaThanhVien());
+        values.put("thanhVien_hoTen", tv.getHoTen());
+        values.put("thanhVien_namSinh", tv.getNamSinh());
+
+        return sqLite.update("tbl_thanhVien", values, "thanhVien_id = ?", new String[]{String.valueOf(tv.getMaThanhVien())});
+    }
+    public int delete(int ID) {
+        return sqLite.delete("tbl_thanhVien", "thanhVien_id = ?", new String[]{String.valueOf(ID)});
     }
 }
