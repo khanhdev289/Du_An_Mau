@@ -2,6 +2,7 @@ package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -9,6 +10,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import khanhnqph30151.fptpoly.duanmau.R;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.Sach;
 import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.SachDAO;
 
 public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHolder> {
@@ -59,7 +66,7 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
                     @Override
                     public boolean onMenuItemSelected(@NonNull MenuBuilder menu, @NonNull MenuItem item) {
                         if (item.getItemId() == R.id.option_edit) {
-//                            updateDia(list.get(position), position);
+                            showUpdate(list.get(position), position);
                             return true;
                         } else if (item.getItemId() == R.id.option_delete) {
                             showDele(list.get(position).getMaLoaiSach());
@@ -107,6 +114,48 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
         });
         dialogDL.show();
     }
+        public void showUpdate(LoaiSach ls, int id){
+            Dialog dialog = new Dialog(context);
+            LoaiSachDAO loaiDao = new LoaiSachDAO(context);
+            dialog.setContentView(R.layout.dialog_loaisach_edit);
+            EditText ed1;
+            Button btnDialogAddCancel, btnDialogAddSubmit;
+            ed1 = dialog.findViewById(R.id.edt_dialog_loaisach_edit_name);
+
+            ed1.setText(list.get(id).getTenLoaiSach());
+
+            btnDialogAddCancel = dialog.findViewById(R.id.btn_dialog_loaisach_edit_cancel);
+            btnDialogAddSubmit = dialog.findViewById(R.id.btn_dialog_loaisach_edit_add);
+
+            btnDialogAddCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            btnDialogAddSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LoaiSachDAO loaiDao = new LoaiSachDAO(context);
+                    String ten = ed1.getText().toString();
+                    if (ten.trim().equals("")) {
+                        Toast.makeText(context, "ko dc de trong", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        ls.setTenLoaiSach(ed1.getText().toString());
+                    }
+                    if (loaiDao.update(ls) > 0) {
+                        Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+                        list = loaiDao.getAllData();
+                        setData(list);
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+            dialog.show();
+        }
 
     @Override
     public int getItemCount() {
