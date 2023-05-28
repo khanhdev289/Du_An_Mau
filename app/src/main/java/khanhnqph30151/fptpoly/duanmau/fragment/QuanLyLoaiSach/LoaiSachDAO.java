@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import khanhnqph30151.fptpoly.duanmau.data.DBHelper;
 import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyPhieuMuon.PhieuMuon;
 import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyPhieuMuon.PhieuMuonDAO;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.Sach;
 
 public class LoaiSachDAO {
     DBHelper dbHelper;
@@ -55,6 +56,16 @@ public class LoaiSachDAO {
         }
         return lst;
 
+    }
+    public long update(LoaiSach ls){
+        ContentValues values = new ContentValues();
+        values.put("loaiSach_id", ls.getMaLoaiSach());
+        values.put("loaiSach_tenLoai", ls.getTenLoaiSach());
+
+        return sqLite.update("tbl_loaiSach", values, "loaiSach_id", new String[]{String.valueOf(ls.getMaLoaiSach())});
+    }
+    public int delete(int ID) {
+        return sqLite.delete("tbl_loaiSach", "loaiSach_id = ?", new String[]{String.valueOf(ID)});
     }
 
 }

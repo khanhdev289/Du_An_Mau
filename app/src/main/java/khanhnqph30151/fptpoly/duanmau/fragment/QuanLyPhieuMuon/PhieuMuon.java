@@ -6,19 +6,19 @@ public class PhieuMuon {
     private String maThuThu;
     private String tenSach;
     private String ngayMuon;
-    private String tienThue;
+    private String giaThue;
     private String trangThai;
 
     public PhieuMuon() {
     }
 
-    public PhieuMuon(int maPhieuMuon, String tenThanhVien, String maThuThu, String tenSach, String ngayMuon, String tienThue, String trangThai) {
+    public PhieuMuon(int maPhieuMuon, String tenThanhVien, String maThuThu, String tenSach, String ngayMuon, String giaThue, String trangThai) {
         this.maPhieuMuon = maPhieuMuon;
         this.tenThanhVien = tenThanhVien;
         this.maThuThu = maThuThu;
         this.tenSach = tenSach;
         this.ngayMuon = ngayMuon;
-        this.tienThue = tienThue;
+        this.giaThue = giaThue;
         this.trangThai = trangThai;
     }
 
@@ -62,12 +62,12 @@ public class PhieuMuon {
         this.ngayMuon = ngayMuon;
     }
 
-    public String getTienThue() {
-        return tienThue;
+    public String getGiaThue() {
+        return giaThue;
     }
 
-    public void setTienThue(String tienThue) {
-        this.tienThue = tienThue;
+    public void setGiaThue(String giaThue) {
+        this.giaThue = giaThue;
     }
 
     public String getTrangThai() {
@@ -78,3 +78,4 @@ public class PhieuMuon {
         this.trangThai = trangThai;
     }
 }
+

@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -82,11 +83,13 @@ public class QuanLyPhieuMuonFragment extends Fragment {
                 dialog.setContentView(R.layout.dialog_phieumuon_add);
 
                 EditText ed1;
+                TextView tv1;
                 CheckBox checkBox;
                 Spinner spinerSach, spinnerThanhVien;
                 Button btnDialogAddCancel, btnDialogAddSubmit;
 
                 ed1 = dialog.findViewById(R.id.edt_dialog_phieumuon_add_ngay);
+                tv1 = dialog.findViewById(R.id.tv_dialog_phieumuon_add_giathue);
                 checkBox = dialog.findViewById(R.id.ckb_dialog_phieumuon_add_check);
 
                 spinerSach = dialog.findViewById(R.id.spn_dialog_phieumuon_add_tensach);
@@ -117,6 +120,7 @@ public class QuanLyPhieuMuonFragment extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         SachList = sachDao.getAllData();
                         pm.setTenSach(SachList.get(position).getTenSach());
+                        tv1.setText(SachList.get(position).getGiaThue());
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {

@@ -29,7 +29,7 @@ public class PhieuMuonDAO {
                 pm.setMaThuThu(cursor.getString(cursor.getColumnIndex("thuThu_id")));
                 pm.setTenSach(cursor.getString(cursor.getColumnIndex("Sach_tenSach")));
                 pm.setNgayMuon(cursor.getString(cursor.getColumnIndex("phieuMuon_ngay")));
-                pm.setTienThue(cursor.getString(cursor.getColumnIndex("phieuMuon_tienThue")));
+                pm.setGiaThue(cursor.getString(cursor.getColumnIndex("Sach_giaThue")));
                 pm.setTrangThai((cursor.getString(cursor.getColumnIndex("phieuMuon_trangThai"))));
                 list.add(pm);
         }
@@ -39,6 +39,7 @@ public class PhieuMuonDAO {
         ContentValues values = new ContentValues();
         values.put("thanhVien_hoTen", pm.getTenThanhVien());
         values.put("Sach_tenSach", pm.getTenSach());
+        values.put("Sach_giaThue", pm.getGiaThue());
         values.put("phieuMuon_ngay", pm.getNgayMuon());
         values.put("phieuMuon_trangThai", pm.getTrangThai());
 

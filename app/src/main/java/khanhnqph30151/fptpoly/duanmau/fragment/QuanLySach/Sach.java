@@ -3,17 +3,23 @@ package khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach;
 public class Sach {
     private int idSach;
     private String tenSach;
-    private String giaTien;
-    private int idLoai;
+    private String giaThue;
+    private String tenLoai;
 
     public Sach() {
     }
 
-    public Sach(int idSach, String tenSach, String giaTien, int idLoai) {
+    public Sach(int idSach, String tenSach, String giaThue, String tenLoai) {
         this.idSach = idSach;
         this.tenSach = tenSach;
-        this.giaTien = giaTien;
-        this.idLoai = idLoai;
+        this.giaThue = giaThue;
+        this.tenLoai = tenLoai;
+    }
+
+    public Sach(String tenSach, String giaThue, String tenLoai) {
+        this.tenSach = tenSach;
+        this.giaThue = giaThue;
+        this.tenLoai = tenLoai;
     }
 
     public int getIdSach() {
@@ -32,19 +38,19 @@ public class Sach {
         this.tenSach = tenSach;
     }
 
-    public String getGiaTien() {
-        return giaTien;
+    public String getGiaThue() {
+        return giaThue;
     }
 
-    public void setGiaTien(String giaTien) {
-        this.giaTien = giaTien;
+    public void setGiaThue(String giaThue) {
+        this.giaThue = giaThue;
     }
 
-    public int getIdLoai() {
-        return idLoai;
+    public String getTenLoai() {
+        return tenLoai;
     }
 
-    public void setIdLoai(int idLoai) {
-        this.idLoai = idLoai;
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
     }
 }

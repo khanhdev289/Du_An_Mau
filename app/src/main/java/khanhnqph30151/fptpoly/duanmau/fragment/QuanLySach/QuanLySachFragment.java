@@ -88,7 +88,7 @@ public class QuanLySachFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         llist = loaiDao.getAllData();
-                        s.setIdLoai(llist.get(position).getMaLoaiSach());
+                        s.setTenLoai((llist.get(position).getTenLoaiSach()));
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -111,7 +111,7 @@ public class QuanLySachFragment extends Fragment {
                             Toast.makeText(getContext(), "ko dc de trong", Toast.LENGTH_SHORT).show();
                         } else {
                             s.setTenSach(ed1.getText().toString());
-                            s.setGiaTien(ed2.getText().toString());
+                            s.setGiaThue(ed2.getText().toString());
                         }
                         if (sachDao.insert(s) >= 0) {
                             Toast.makeText(getContext(), "them thanh cong", Toast.LENGTH_LONG).show();

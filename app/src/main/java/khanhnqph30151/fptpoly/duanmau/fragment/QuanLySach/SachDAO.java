@@ -26,8 +26,8 @@ public class SachDAO {
             Sach s = new Sach();
             s.setIdSach(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Sach_id"))));
             s.setTenSach(cursor.getString(cursor.getColumnIndex("Sach_tenSach")));
-            s.setGiaTien(cursor.getString(cursor.getColumnIndex("Sach_giaTien")));
-            s.setIdLoai(Integer.parseInt(cursor.getString(cursor.getColumnIndex("loaiSach_id"))));
+            s.setGiaThue(cursor.getString(cursor.getColumnIndex("Sach_giaThue")));
+            s.setTenLoai(cursor.getString(cursor.getColumnIndex("loaiSach_tenLoai")));
             list.add(s);
         }
         return list;
@@ -35,8 +35,8 @@ public class SachDAO {
     public long insert(Sach s){
         ContentValues values = new ContentValues();
         values.put("Sach_tenSach", s.getTenSach());
-        values.put("Sach_giaThue", s.getGiaTien());
-        values.put("loaiSach_id", s.getIdLoai());
+        values.put("Sach_giaThue", s.getGiaThue());
+        values.put("loaiSach_tenLoai", s.getTenLoai());
 
         return sqLite.insert("tbl_Sach", null, values);
     }
@@ -59,6 +59,18 @@ public class SachDAO {
         }
         return lst;
 
+    }
+    public long update(Sach s){
+        ContentValues values = new ContentValues();
+
+        values.put("Sach_tenSach", s.getTenSach());
+        values.put("Sach_giaThue", s.getGiaThue());
+        values.put("loaiSach_tenLoai", s.getTenLoai());
+
+        return sqLite.update("tbl_Sach", values, "Sach_id", new String[]{String.valueOf(s.getIdSach())});
+    }
+    public int delete(int ID) {
+        return sqLite.delete("tbl_Sach", "Sach_id = ?", new String[]{String.valueOf(ID)});
     }
 
 }

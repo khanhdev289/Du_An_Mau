@@ -50,6 +50,24 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gía Thuê"
+                android:textSize="20dp"/>
+            <TextView
+                android:background="@drawable/custome_boder_add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_dialog_phieumuon_add_giathue"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -62,6 +80,8 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/custome_boder_add"
                 android:layout_height="40dp"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/edt_dialog_phieumuon_add_ngay"
                 />
         </LinearLayout>

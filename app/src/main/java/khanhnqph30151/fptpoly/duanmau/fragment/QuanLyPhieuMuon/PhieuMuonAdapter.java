@@ -47,6 +47,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
         holder.tvTenSach.setText(list.get(position).getTenSach());
         holder.tvNgayMuon.setText(list.get(position).getNgayMuon());
         holder.tvTraSach.setText(list.get(position).getTrangThai());
+//        holder.tvGiaThue.setText(list.get(position).getGiaThue());
 
 
     }
@@ -59,7 +60,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvTenThanhVien,tvTenSach, tvNgayMuon, tvTraSach;
+        TextView tvTenThanhVien,tvTenSach, tvNgayMuon,tvGiaThue, tvTraSach;
          ;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +68,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
             tvTenSach = itemView.findViewById(R.id.tv_item_phieumuon_tensach);
             tvNgayMuon = itemView.findViewById(R.id.tv_item_phieumuon_ngayMuon);
             tvTraSach = itemView.findViewById(R.id.tv_PhieuMuon_traSach);
+//            tvGiaThue = itemView.findViewById(R.id.tv_hieumuon_add_giathue);
         }
     }
 }

@@ -73,13 +73,27 @@
         android:background="#c93142"
         android:textColor="@color/white"
         />
-    <TextView
-        android:layout_marginTop="10dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:text="Quên mật khẩu ?"
-        android:textStyle="bold"
-        android:textColor="#c93142"
-        />
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quên mật khẩu ?"
+            android:textStyle="bold"
+            android:textColor="#c93142"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:textStyle="bold"
+            android:textColor="#c93142"
+            />
+    </LinearLayout>
 </LinearLayout>

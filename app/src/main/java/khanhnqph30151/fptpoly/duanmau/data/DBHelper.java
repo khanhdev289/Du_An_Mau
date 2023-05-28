@@ -35,8 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "tbl_Sach (" +
             "Sach_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "Sach_tenSach TEXT NOT NULL," +
-            "Sach_giaTien TEXT NOT NULL," +
-            "loaiSach_id INTEGER REFERENCES tbl_loaiSach(loaiSach_id)" +
+            "Sach_giaThue TEXT NOT NULL," +
+            "loaiSach_tenLoai TEXT REFERENCES tbl_loaiSach(loaiSach_tenLoai)" +
             ")";
     public static final String TABLE_PHIEU_MUON_CREATE = "CREATE TABLE IF NOT EXISTS " +
             "tbl_phieuMuon (" +
@@ -45,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "thuThu_id TEXT REFERENCES tbl_thuThu(thuThu_id)," +
             "Sach_tenSach INTEGER REFERENCES tbl_Sach(Sach_tenSach)," +
             "phieuMuon_ngay TEXT NOT NULL," +
-            "phieuMuon_tienThue TEXT ," +
+            "Sach_giaThue TEXT REFERENCES tbl_Sach(Sach_giaThue) ," +
             "phieuMuon_trangThai TEXT " +
             ")";
 
