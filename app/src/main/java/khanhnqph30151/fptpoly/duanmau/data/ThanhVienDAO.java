@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyThanhVien;
+package khanhnqph30151.fptpoly.duanmau.data;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -9,8 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 import khanhnqph30151.fptpoly.duanmau.data.DBHelper;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSach;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.Sach;
+import khanhnqph30151.fptpoly.duanmau.model.ThanhVien;
 
 public class ThanhVienDAO {
     DBHelper dbHelper;

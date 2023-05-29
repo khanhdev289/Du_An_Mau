@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyPhieuMuon;
+package khanhnqph30151.fptpoly.duanmau.model;
 
 public class PhieuMuon {
     private int maPhieuMuon;

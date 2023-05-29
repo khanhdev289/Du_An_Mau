@@ -6,8 +6,11 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import khanhnqph30151.fptpoly.duanmau.R;
@@ -22,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText edUser =  findViewById(R.id.ed_Login_ten);
         EditText edPass = findViewById(R.id.ed_Login_matkhau);
+
 
         AppCompatButton btnLogin = findViewById(R.id.btn_Login_DangNhap);
         ThuThuDAO thuThuDAO = new ThuThuDAO(this);

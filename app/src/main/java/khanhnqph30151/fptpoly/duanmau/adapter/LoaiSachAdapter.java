@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach;
+package khanhnqph30151.fptpoly.duanmau.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,11 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import khanhnqph30151.fptpoly.duanmau.R;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.Sach;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.SachDAO;
+import khanhnqph30151.fptpoly.duanmau.data.LoaiSachDAO;
+import khanhnqph30151.fptpoly.duanmau.model.LoaiSach;
 
 public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHolder> {
     private ArrayList<LoaiSach> list;

@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach;
+package khanhnqph30151.fptpoly.duanmau.model;
 
 public class LoaiSach {
     private int maLoaiSach;

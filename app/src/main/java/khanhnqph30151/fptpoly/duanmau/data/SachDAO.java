@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach;
+package khanhnqph30151.fptpoly.duanmau.data;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import khanhnqph30151.fptpoly.duanmau.data.DBHelper;
+import khanhnqph30151.fptpoly.duanmau.model.Sach;
 
 public class SachDAO {
     DBHelper dbHelper;

@@ -76,14 +76,14 @@
                 android:layout_height="wrap_content"
                 android:text="Ngày Mượn"
                 android:textSize="20dp"/>
+
             <EditText
-                android:layout_width="match_parent"
-                android:background="@drawable/custome_boder_add"
-                android:layout_height="40dp"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="10dp"
                 android:id="@+id/edt_dialog_phieumuon_edit_ngay"
-                />
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custome_boder_add"
+                android:paddingLeft="20dp" />
         </LinearLayout>
 
         <LinearLayout

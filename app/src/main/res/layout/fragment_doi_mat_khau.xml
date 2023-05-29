@@ -3,13 +3,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.Doi_Mat_Khau.DoiMatKhauFragment">
+    tools:context=".fragment.DoiMatKhauFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="ĐỔI MẬT KHẨU"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:orientation="vertical"
+        android:layout_margin="40dp"
+        tools:context=".View.LoginActivity">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/logo_noway_android"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đổi mật khẩu"
+            android:textStyle="italic"
+            android:textSize="30dp"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hãy đăng nhặp và tìm kiếm loại sách mà bạn mong muốn"
+            android:gravity="center"
+            />
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:id="@+id/ed_Doimk_matkhaucu"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:hint="Mật Khẩu Cũ"
+                android:paddingLeft="20dp"
+                android:background="@drawable/custome_boder"
+                android:inputType="textPassword"
+                />
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <EditText
+                android:id="@+id/ed_Doimk_matkhaumoi"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:hint="Mật Khẩu Mới"
+                android:paddingLeft="20dp"
+                android:background="@drawable/custome_boder"
+                android:inputType="textPassword"
+                />
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/ed_Doimk_matkhau2"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:hint="Nhập lại mật khẩu"
+                android:paddingLeft="20dp"
+                android:background="@drawable/custome_boder"
+                android:inputType="textPassword"
+                />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đổi Mật Khẩu"
+            android:id="@+id/btn_Doimk_Doimk"
+            android:background="#c93142"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
 </FrameLayout>

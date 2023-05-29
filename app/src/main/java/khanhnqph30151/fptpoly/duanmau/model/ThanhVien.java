@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyThanhVien;
+package khanhnqph30151.fptpoly.duanmau.model;
 
 public class ThanhVien {
     private int maThanhVien;

@@ -14,14 +14,13 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 
 import khanhnqph30151.fptpoly.duanmau.R;
-import khanhnqph30151.fptpoly.duanmau.data.DBHelper;
-import khanhnqph30151.fptpoly.duanmau.fragment.Doanh_Thu.DoanhThuFragment;
-import khanhnqph30151.fptpoly.duanmau.fragment.Doi_Mat_Khau.DoiMatKhauFragment;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.QuanLyLoaiSachFragment;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyPhieuMuon.QuanLyPhieuMuonFragment;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.QuanLySachFragment;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyThanhVien.QuanLyThanhVienFragment;
-import khanhnqph30151.fptpoly.duanmau.fragment.Top10.Top10SachMuonNhieuNhatFragment;
+import khanhnqph30151.fptpoly.duanmau.fragment.DoanhThuFragment;
+import khanhnqph30151.fptpoly.duanmau.fragment.DoiMatKhauFragment;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSachFragment;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyPhieuMuonFragment;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySachFragment;
+import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyThanhVienFragment;
+import khanhnqph30151.fptpoly.duanmau.fragment.Top10SachMuonNhieuNhatFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -41,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.id_nav);
         navigationView.setNavigationItemSelectedListener(this);
+        replaceFragment(new QuanLySachFragment());
+
 
     }
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+        setTitle(item.getTitle());
         if (item.getItemId() == R.id.qlphieumuon) {
             drawerLayout.close();
             replaceFragment(QuanLyPhieuMuonFragment.newInstance());
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             return false;
         }
+
+
     }
 
 

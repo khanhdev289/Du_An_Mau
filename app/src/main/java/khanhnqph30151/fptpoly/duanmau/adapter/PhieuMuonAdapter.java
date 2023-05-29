@@ -1,11 +1,11 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyPhieuMuon;
+package khanhnqph30151.fptpoly.duanmau.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,23 +25,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
+import java.util.Calendar;
 
 import khanhnqph30151.fptpoly.duanmau.R;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSach;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSachDAO;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.Sach;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach.SachDAO;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyThanhVien.ThanhVien;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyThanhVien.ThanhVienDAO;
+import khanhnqph30151.fptpoly.duanmau.model.LoaiSach;
+import khanhnqph30151.fptpoly.duanmau.model.PhieuMuon;
+import khanhnqph30151.fptpoly.duanmau.data.PhieuMuonDAO;
+import khanhnqph30151.fptpoly.duanmau.model.Sach;
+import khanhnqph30151.fptpoly.duanmau.data.SachDAO;
+import khanhnqph30151.fptpoly.duanmau.model.ThanhVien;
+import khanhnqph30151.fptpoly.duanmau.data.ThanhVienDAO;
 
 public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.ViewHolder> {
     private ArrayList<PhieuMuon> list;
     private Context context;
+
+    private ArrayList<LoaiSach> llist;
 
     public PhieuMuonAdapter(ArrayList<PhieuMuon> list, Context context) {
         this.list = list;
@@ -154,8 +157,27 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
         btnDialogAddCancel = dialog.findViewById(R.id.btn_dialog_phieumuon_edit_cancel);
         btnDialogAddSubmit = dialog.findViewById(R.id.btn_dialog_phieumuon_edit_add);
 
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
 
         ed1.setText(list.get(id).getNgayMuon());
+        ed1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        month = month + 1;
+                        String date = dayOfMonth+"/"+month+"/"+year;
+                        ed1.setText(date);
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+            }
+        });
 
         ArrayList<Sach> sList = sachDao.getAllData();
         ArrayList<ThanhVien> tvList = tvDao.getAllData();
@@ -164,14 +186,16 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, sachDao.name());
         spinnerTv.setAdapter(adapter1);
         spinerSach.setAdapter(adapter2);
-//        int spIndex = 0;
-//        for (LoaiSach ls : llist) {
-//            if (ls.getMaLoaiSach() == s.getIdLoai()) {
-//                spinerSach.setSelection(spIndex);
-//                break;
-//            }
-//            spIndex++;
-//        }
+
+        int spIndex = 0;
+        for (LoaiSach ls : llist) {
+            if (ls.getTenLoaiSach().equals(pm.getTenSach())) {
+                spinerSach.setSelection(spIndex);
+                break;
+            }
+            spIndex++;
+        }
+
         spinnerTv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -224,6 +248,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
                 else {
                     pm.setNgayMuon(ed1.getText().toString());
                     pm.setTrangThai(trangthai);
+                    pm.setGiaThue(tv1.getText().toString());
 
                 }
                 if (pmDao.update(pm) > 0) {
@@ -271,7 +296,6 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
             tvTenSach = itemView.findViewById(R.id.tv_item_phieumuon_tensach);
             tvNgayMuon = itemView.findViewById(R.id.tv_item_phieumuon_ngayMuon);
             tvTraSach = itemView.findViewById(R.id.tv_PhieuMuon_traSach);
-//            tvGiaThue = itemView.findViewById(R.id.tv_hieumuon_add_giathue);
         }
     }
 }

@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLyThanhVien;
+package khanhnqph30151.fptpoly.duanmau.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -21,56 +21,58 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 import khanhnqph30151.fptpoly.duanmau.R;
+import khanhnqph30151.fptpoly.duanmau.data.LoaiSachDAO;
+import khanhnqph30151.fptpoly.duanmau.model.LoaiSach;
+import khanhnqph30151.fptpoly.duanmau.adapter.LoaiSachAdapter;
 
+public class QuanLyLoaiSachFragment extends Fragment {
+    private LoaiSachDAO dao;
+    private ArrayList<LoaiSach> list;
+    private LoaiSachAdapter adapter;
 
-public class QuanLyThanhVienFragment extends Fragment {
-    private ArrayList<ThanhVien> list;
-    private ThanhVienAdapter adapter;
-    public QuanLyThanhVienFragment() {
+    public QuanLyLoaiSachFragment() {
+
     }
 
-    public static QuanLyThanhVienFragment newInstance() {
-        QuanLyThanhVienFragment fragment = new QuanLyThanhVienFragment();
+    public static QuanLyLoaiSachFragment newInstance() {
+        QuanLyLoaiSachFragment fragment = new QuanLyLoaiSachFragment();
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quan_ly_thanh_vien, container, false);
+        return inflater.inflate(R.layout.fragment_quan_ly_loai_sach, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        RecyclerView recyThanhVien = view.findViewById(R.id.recy_thanhvien);
-        FloatingActionButton floatAdd = view.findViewById(R.id.float_thanhvien_add);
+        RecyclerView recyLoaiSach = view.findViewById(R.id.recy_loaisach);
+        FloatingActionButton floatAdd = view.findViewById(R.id.float_loaisach_add);
 
-        ThanhVienDAO dao = new ThanhVienDAO(getContext());
-        list =dao.getAllData();
-        adapter = new ThanhVienAdapter(list, getContext());
+        LoaiSachDAO dao = new LoaiSachDAO(getContext());
+        list = dao.getAllData();
+        adapter = new LoaiSachAdapter(list, getContext());
 
         floatAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialog dialog = new Dialog(getContext());
-                ThanhVien tv = new ThanhVien();
-                dialog.setContentView(R.layout.dialog_thanhvien_add);
+                LoaiSach ls = new LoaiSach();
+                dialog.setContentView(R.layout.dialog_loaisach_add);
 
-                EditText ed1, ed2;
+                EditText ed1;
                 Button btnDialogAddCancel, btnDialogAddSubmit;
+                ed1 = dialog.findViewById(R.id.edt_dialog_loaisach_add_name);
 
-                ed1 = dialog.findViewById(R.id.edt_dialog_thanhvien_add_name);
-                ed2 = dialog.findViewById(R.id.edt_dialog_thanhvien_add_namsinh);
-
-                btnDialogAddCancel = dialog.findViewById(R.id.btn_dialog_thanhvien_add_cancel);
-                btnDialogAddSubmit = dialog.findViewById(R.id.btn_dialog_thanhvien_add_add);
+                btnDialogAddCancel = dialog.findViewById(R.id.btn_dialog_loaisach_add_cancel);
+                btnDialogAddSubmit = dialog.findViewById(R.id.btn_dialog_loaisach_add_add);
 
                 btnDialogAddCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -81,17 +83,13 @@ public class QuanLyThanhVienFragment extends Fragment {
                 btnDialogAddSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         String ten = ed1.getText().toString();
-                        String namsinh = ed2.getText().toString();
-
-                        if(ten.trim().equals("") && namsinh.trim().equals("")){
+                        if (ten.trim().equals("")) {
                             Toast.makeText(getContext(), "ko dc de trong", Toast.LENGTH_SHORT).show();
-                        }else {
-                            tv.setHoTen(ed1.getText().toString());
-                            tv.setNamSinh(ed2.getText().toString());
+                        } else {
+                            ls.setTenLoaiSach(ed1.getText().toString());
                         }
-                        if (dao.insert(tv) >= 0) {
+                        if (dao.insert(ls) >= 0) {
                             Toast.makeText(getContext(), "them thanh cong", Toast.LENGTH_LONG).show();
                             list = dao.getAllData();
                             adapter.setData(list);
@@ -105,8 +103,8 @@ public class QuanLyThanhVienFragment extends Fragment {
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyThanhVien.setLayoutManager(layoutManager);
-        recyThanhVien.setAdapter(adapter);
+        recyLoaiSach.setLayoutManager(layoutManager);
+        recyLoaiSach.setAdapter(adapter);
 
         super.onViewCreated(view, savedInstanceState);
     }

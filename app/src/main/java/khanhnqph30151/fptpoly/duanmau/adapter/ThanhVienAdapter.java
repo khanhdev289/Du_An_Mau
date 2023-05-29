@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach;
+package khanhnqph30151.fptpoly.duanmau.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,11 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,27 +22,20 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import khanhnqph30151.fptpoly.duanmau.R;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSach;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSachDAO;
+import khanhnqph30151.fptpoly.duanmau.data.ThanhVienDAO;
+import khanhnqph30151.fptpoly.duanmau.model.ThanhVien;
 
-public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
-    private ArrayList<Sach> list;
+public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.ViewHolder> {
+    ArrayList<ThanhVien> list;
     private Context context;
-    private ArrayList<LoaiSach> llist;
-    private LoaiSachDAO loaiDao;
-    ArrayAdapter<String> listspiner;
 
-
-
-
-    public SachAdapter(ArrayList<Sach> list, Context context){
-        this.list = list;
+    public ThanhVienAdapter(ArrayList<ThanhVien> list, Context context){
+        this.list  =list;
         this.context = context;
     }
-    public void setData(ArrayList<Sach> lst){
+    public void setData(ArrayList<ThanhVien> lst){
         this.list = lst;
         notifyDataSetChanged();
     }
@@ -54,16 +44,14 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_sach, parent, false);
-
+        View view = inflater.inflate(R.layout.item_thanhvien, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.tvTenSach.setText(list.get(position).getTenSach());
-        holder.tvGiaTien.setText(list.get(position).getGiaThue());
-        holder.tvLoaiSach.setText(String.valueOf(list.get(position).getTenLoai()));
+        holder.tvTenThanhVien.setText(list.get(position).getHoTen());
+        holder.tvNamSinh.setText(list.get(position).getNamSinh());
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
@@ -77,10 +65,10 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
                     @Override
                     public boolean onMenuItemSelected(@NonNull MenuBuilder menu, @NonNull MenuItem item) {
                         if (item.getItemId() == R.id.option_edit) {
-                            updateDia(list.get(position), position);
+                            showUpdate(list.get(position), position);
                             return true;
                         } else if (item.getItemId() == R.id.option_delete) {
-                            showDele(list.get(position).getIdSach());
+                            showDele(list.get(position).getMaThanhVien());
                             return true;
                         } else {
                             return false;
@@ -110,10 +98,10 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         dialogDL.setPositiveButton("CÓ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                SachDAO dao = new SachDAO(context);
-                if (dao.delete(id) > 0) {
+                ThanhVienDAO tvDao = new ThanhVienDAO(context);
+                if (tvDao.delete(id) > 0) {
                     Toast.makeText(context, "Xóa Thành Công", Toast.LENGTH_SHORT).show();
-                    list = dao.getAllData();
+                    list = tvDao.getAllData();
                     setData(list);
                 } else {
                     Toast.makeText(context, "Xóa Thất Bại", Toast.LENGTH_SHORT).show();
@@ -125,50 +113,21 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         });
         dialogDL.show();
     }
-    private void updateDia(Sach s, int id) {
+    public void showUpdate(ThanhVien tv, int id){
         Dialog dialog = new Dialog(context);
-        LoaiSachDAO loaiDao = new LoaiSachDAO(context);
-        dialog.setContentView(R.layout.dialog_sach_edit);
+        dialog.setContentView(R.layout.dialog_thanhvien_edit);
         EditText ed1, ed2;
-        Spinner spinerSach;
         Button btnDialogAddCancel, btnDialogAddSubmit;
-        ed1 = dialog.findViewById(R.id.edt_dialog_sach_edit_name);
-        ed2 = dialog.findViewById(R.id.edt_dialog_sach_edit_giatien);
-        spinerSach = dialog.findViewById(R.id.spn_dialog_sach_edit_loaisach);
+        ed1 = dialog.findViewById(R.id.edt_dialog_thanhvien_edit_name);
+        ed2 = dialog.findViewById(R.id.edt_dialog_thanhvien_edit_namsinh);
+
+        ed1.setText(list.get(id).getHoTen());
+        ed2.setText(list.get(id).getNamSinh());
 
 
-        ed1.setText(list.get(id).getTenSach());
-        ed2.setText(list.get(id).getGiaThue());
+        btnDialogAddCancel = dialog.findViewById(R.id.btn_dialog_thanhvien_edit_cancel);
+        btnDialogAddSubmit = dialog.findViewById(R.id.btn_dialog_thanhvien_edit_add);
 
-        btnDialogAddCancel = dialog.findViewById(R.id.btn_dialog_sach_edit_cancel);
-        btnDialogAddSubmit = dialog.findViewById(R.id.btn_dialog_sach_edit_add);
-
-        ArrayList<LoaiSach> lsList = loaiDao.getAllData();
-
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, loaiDao.name());
-        spinerSach.setAdapter(adapter1);
-//        int spIndex = 0;
-//        for (LoaiSach ls : llist) {
-//            if (ls.getTenLoaiSach() == s.getTenLoai()) {
-//                spinerSach.setSelection(spIndex);
-//                break;
-//            }
-//            spIndex++;
-//        }
-        spinerSach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                String i = lsList.get(position).getTenLoaiSach();
-                s.setTenLoai(i);
-//                llist = loaiDao.getAllData();
-//                s.setTenLoai(String.valueOf(llist.get(position).getTenLoaiSach()));
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         btnDialogAddCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,21 +137,19 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         btnDialogAddSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SachDAO sachDao = new SachDAO(context);
+                ThanhVienDAO tvDao = new ThanhVienDAO(context);
                 String ten = ed1.getText().toString();
-                String giatien = ed2.getText().toString();
-
-
-                if (ten.trim().equals("") && giatien.trim().equals("")) {
+                String namsinh = ed2.getText().toString();
+                if (ten.trim().equals("") && namsinh.trim().equals(""))  {
                     Toast.makeText(context, "ko dc de trong", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    s.setTenSach(ed1.getText().toString());
-                    s.setGiaThue(ed2.getText().toString());
+                    tv.setHoTen(ed1.getText().toString());
+                    tv.setNamSinh(ed2.getText().toString());
                 }
-                if (sachDao.update(s) > 0) {
+                if (tvDao.update(tv) > 0) {
                     Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_LONG).show();
-                    list = sachDao.getAllData();
+                    list = tvDao.getAllData();
                     setData(list);
                     dialog.dismiss();
                 } else {
@@ -201,7 +158,6 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
             }
         });
         dialog.show();
-
     }
 
 
@@ -212,13 +168,12 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         return 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvTenSach, tvGiaTien, tvLoaiSach;
+    public class ViewHolder extends  RecyclerView.ViewHolder{
+        TextView tvTenThanhVien, tvNamSinh;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTenSach = itemView.findViewById(R.id.tv_item_sach_tensach);
-            tvGiaTien = itemView.findViewById(R.id.tv_item_sach_giatien);
-            tvLoaiSach = itemView.findViewById(R.id.tv_item_sach_loaisach);
+            tvTenThanhVien = itemView.findViewById(R.id.tv_item_thanhvien_tenthanhvien);
+            tvNamSinh = itemView.findViewById(R.id.tv_item_thanhvien_namsinh);
         }
     }
 }

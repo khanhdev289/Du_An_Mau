@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach;
+package khanhnqph30151.fptpoly.duanmau.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -22,12 +22,13 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import khanhnqph30151.fptpoly.duanmau.R;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSach;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSachAdapter;
-import khanhnqph30151.fptpoly.duanmau.fragment.QuanLyLoaiSach.LoaiSachDAO;
+import khanhnqph30151.fptpoly.duanmau.model.LoaiSach;
+import khanhnqph30151.fptpoly.duanmau.data.LoaiSachDAO;
+import khanhnqph30151.fptpoly.duanmau.model.Sach;
+import khanhnqph30151.fptpoly.duanmau.adapter.SachAdapter;
+import khanhnqph30151.fptpoly.duanmau.data.SachDAO;
 
 
 public class QuanLySachFragment extends Fragment {

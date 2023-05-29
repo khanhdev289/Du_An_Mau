@@ -29,7 +29,7 @@
         android:text="Hãy đăng nhặp và tìm kiếm loại sách mà bạn mong muốn"
         android:gravity="center"
         />
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,29 +40,27 @@
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:paddingLeft="20dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:hint="Tên đăng nhập"
-            android:textAlignment="textStart"
-            android:background="@drawable/custome_boder"
             />
-    </LinearLayout>
-    <LinearLayout
-
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:passwordToggleEnabled="true"
         >
+
         <EditText
             android:id="@+id/ed_Login_matkhau"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:hint="Mật Khẩu"
-            android:paddingLeft="20dp"
-            android:background="@drawable/custome_boder"
-            />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:inputType="textPassword"
+            android:hint="Mật khẩu"
+            android:paddingLeft="20dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="15dp"

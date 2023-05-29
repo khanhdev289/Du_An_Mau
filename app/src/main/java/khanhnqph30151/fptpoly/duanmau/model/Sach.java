@@ -1,10 +1,11 @@
-package khanhnqph30151.fptpoly.duanmau.fragment.QuanLySach;
+package khanhnqph30151.fptpoly.duanmau.model;
 
 public class Sach {
     private int idSach;
     private String tenSach;
     private String giaThue;
     private String tenLoai;
+    private int soluong;
 
     public Sach() {
     }
@@ -20,6 +21,11 @@ public class Sach {
         this.tenSach = tenSach;
         this.giaThue = giaThue;
         this.tenLoai = tenLoai;
+    }
+
+    public Sach(String tenSach, int soluong) {
+        this.tenSach = tenSach;
+        this.soluong = soluong;
     }
 
     public int getIdSach() {
@@ -52,5 +58,13 @@ public class Sach {
 
     public void setTenLoai(String tenLoai) {
         this.tenLoai = tenLoai;
+    }
+
+    public int getSoluong() {
+        return soluong;
+    }
+
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
     }
 }
