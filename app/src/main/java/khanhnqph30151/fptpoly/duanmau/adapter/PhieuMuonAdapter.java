@@ -188,13 +188,22 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.View
         spinerSach.setAdapter(adapter2);
 
         int spIndex = 0;
-        for (LoaiSach ls : llist) {
-            if (ls.getTenLoaiSach().equals(pm.getTenSach())) {
+        for (Sach sach : sList) {
+            if (sach.getTenSach().equals(pm.getTenSach())) {
                 spinerSach.setSelection(spIndex);
                 break;
             }
             spIndex++;
         }
+        int spIndex1 = 0;
+        for (ThanhVien tv : tvList) {
+            if (tv.getHoTen().equals(pm.getTenThanhVien())) {
+                spinnerTv.setSelection(spIndex1);
+                break;
+            }
+            spIndex1++;
+        }
+
 
         spinnerTv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
