@@ -150,7 +150,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
         spinerSach.setAdapter(adapter1);
 //        int spIndex = 0;
 //        for (LoaiSach ls : llist) {
-//            if (ls.getTenLoaiSach() == s.getTenLoai()) {
+//            if (ls.getTenLoaiSach().equals(s.getTenLoai())) {
 //                spinerSach.setSelection(spIndex);
 //                break;
 //            }
