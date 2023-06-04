@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "phuongnamlib.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -18,7 +18,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "tbl_thuThu (" +
             "thuThu_id TEXT PRIMARY KEY , " +
             "thuThu_hoTen TEXT NOT NULL," +
-            "thuThu_matKhau TEXT NOT NULL" +
+            "thuThu_matKhau TEXT NOT NULL," +
+            "thuThu_role TEXT" +
             ")";
     public static final String TABLE_THANH_VIEN_CREATE = "CREATE TABLE IF NOT EXISTS " +
             "tbl_thanhVien (" +
@@ -69,7 +70,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO tbl_loaiSach VALUES (1, 'Thiếu nhi'),(2,'Tình cảm'),(3, 'Giáo khoa')");
         db.execSQL("INSERT INTO tbl_Sach VALUES (1, 'Hãy đợi đấy', 2500, 1), (2, 'Thằng cuội', 1000, 1), (3, 'Lập trình Android', 2000, 3)");
-        db.execSQL("INSERT INTO tbl_thuThu VALUES ('admin','Nguyễn Văn Anh','123123'),('mod','Trần Văn Hùng','123123')");
+        db.execSQL("INSERT INTO tbl_thuThu VALUES ('admin','Nguyễn Văn A','123123', 'admin'),('mod','Trần Văn B','123456', 'Thủ Thư')");
         db.execSQL("INSERT INTO tbl_thanhVien VALUES (1,'Cao Thu Trang','2000'),(2,'Trần Mỹ Kim','2000')");
         //trả sách: 1: đã trả - 0: chưa trả
 

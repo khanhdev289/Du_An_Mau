@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Khánh DEV"
+        android:id="@+id/tv_header_username"
         android:layout_marginLeft="20dp"
         android:gravity="center"
 

@@ -8,8 +8,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,12 +39,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.id_drawer);
 
+//        View headerLayout = navigationView.getHeaderView(0);
+//
+//        TextView tvUser = headerLayout.findViewById(R.id.tv_header_username);
+
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, 0, 0);
         actionBarDrawerToggle.syncState();
 
         navigationView = findViewById(R.id.id_nav);
         navigationView.setNavigationItemSelectedListener(this);
         replaceFragment(new QuanLySachFragment());
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("DATA", MODE_PRIVATE);
+        String role = sharedPreferences.getString("thuThu_role", "");
+        if (!role.equals("admin")){
+            Menu menu = navigationView.getMenu();
+            menu.findItem(R.id.top10).setVisible(false);
+            menu.findItem(R.id.doanhthu).setVisible(false);
+        }
+//        String user = sharedPreferences.getString("thuThu_hoTen", "");
+//        tvUser.setText(user);
 
 
     }
@@ -92,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             return false;
         }
+
+
 
 
     }

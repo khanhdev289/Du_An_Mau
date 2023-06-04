@@ -36,11 +36,6 @@ public class LoginActivity extends AppCompatActivity {
                 String user = edUser.getText().toString();
                 String pass =edPass.getText().toString();
                 if(thuThuDAO.checkLogin(user, pass)){
-                    SharedPreferences sharedPreferences = getSharedPreferences("DATA", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("thuThu_id", user);
-                    editor.commit();
-
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }else {
                     Toast.makeText(LoginActivity.this, "Tài Khoản hoặc Mật Khẩu không đúng !", Toast.LENGTH_SHORT).show();
