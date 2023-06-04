@@ -148,14 +148,14 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, loaiDao.name());
         spinerSach.setAdapter(adapter1);
-//        int spIndex = 0;
-//        for (LoaiSach ls : llist) {
-//            if (ls.getTenLoaiSach().equals(s.getTenLoai())) {
-//                spinerSach.setSelection(spIndex);
-//                break;
-//            }
-//            spIndex++;
-//        }
+        int spIndex = 0;
+        for (LoaiSach ls : lsList) {
+            if (ls.getTenLoaiSach().equals(s.getTenLoai())) {
+                spinerSach.setSelection(spIndex);
+                break;
+            }
+            spIndex++;
+        }
         spinerSach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
